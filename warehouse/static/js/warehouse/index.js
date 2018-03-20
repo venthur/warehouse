@@ -147,6 +147,33 @@ docReady(() => {
   }
 });
 
+// Bind click handlers to dropdowns for keyboard users
+docReady(() => {
+  let dropdownTriggers = document.querySelectorAll(".dropdown__trigger");
+  for (let trigger of dropdownTriggers) {
+    let button = trigger.querySelector("button");
+    let content = trigger.querySelector(".dropdown__content");
+
+    // If the user has clicked the button (either with a mouse or by pressing
+    // space/enter on the keyboard) show the content
+    button.addEventListener("click", function () {
+      // Toggle the visibility of the content
+      if (content.classList.contains("display-block")) {
+        content.classList.remove("display-block");
+      } else {
+        content.classList.add("display-block");
+      }
+    });
+
+    // If the user has moused onto the button and has happened to click it,
+    // remove the `display-block` class so that it doesn't stay visable when
+    // they mouse out
+    button.addEventListener("mouseout", function() {
+      content.classList.remove("display-block");
+    });
+  }
+});
+
 const application = Application.start();
 const context = require.context("./controllers", true, /\.js$/);
 application.load(definitionsFromContext(context));
