@@ -44,38 +44,40 @@
             {% endif %}
             </td>
           <td class="table__options">
-            <nav class="dropdown dropdown--with-icons">
-              <ul>
-                <li class="dropdown__trigger">
-                  <button class="button button--primary" aria-haspopup="true" aria-expanded="false">
-                    Options
-                    <span class="dropdown__trigger-caret">
-                      <i class="fa fa-caret-down" aria-hidden="true"></i>
-                      <span class="sr-only">view submenu</span>
-                    </span>
-                  </button>
-                  <ul class="dropdown__content">
-                    <li>
-                      <a href="{{ request.route_path('manage.project.release', project_name=project.name, version=release.version) }}" class="dropdown__link">
-                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                        Manage
-                      </a>
-                    </li>
-                    <li>
-                      <a href="{{ request.route_path('packaging.release', name=release.project.name, version=release.version) }}" class="dropdown__link">
-                        <i class="fa fa-eye" aria-hidden="true"></i>
-                        View
-                      </a>
-                    </li>
-                      {% set title = "Delete Release" %}
-                      {% set slug = title.lower().replace(' ', '-') + '-modal-{}'.format(loop.index) %}
-                      <a href="#{{ slug }}" class="dropdown__link">
-                        <i class="fa fa-trash" aria-hidden="true"></i>
-                        Delete
-                      </a>
-                    <li>
-                    </li>
-                  </ul>
+            <nav class="dropdown dropdown--with-icons dropdown__trigger">
+              <button class="button button--primary" aria-haspopup="true" aria-expanded="false">
+                Options
+                <span class="dropdown__trigger-caret">
+                  <i class="fa fa-caret-down" aria-hidden="true"></i>
+                  <span class="sr-only">view submenu</span>
+                </span>
+              </button>
+              <ul class="dropdown__content">
+                <li>
+                  <a href="{{ request.route_path('manage.project.release', project_name=project.name, version=release.version) }}" class="dropdown__link">
+                    <button>
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                      Manage
+                    </button>
+                  </a>
+                </li>
+                <li>
+                  <a href="{{ request.route_path('packaging.release', name=release.project.name, version=release.version) }}" class="dropdown__link">
+                    <button>
+                      <i class="fa fa-eye" aria-hidden="true"></i>
+                      View
+                    </button>
+                  </a>
+                </li>
+                <li>
+                  {% set title = "Delete Release" %}
+                  {% set slug = title.lower().replace(' ', '-') + '-modal-{}'.format(loop.index) %}
+                  <a href="#{{ slug }}" class="dropdown__link">
+                    <button>
+                      <i class="fa fa-trash" aria-hidden="true"></i>
+                      Delete
+                    </button>
+                  </a>
                 </li>
               </ul>
             </nav>
