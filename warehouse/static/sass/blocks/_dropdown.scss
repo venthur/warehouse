@@ -40,6 +40,10 @@
     list-style-type: none;
   }
 
+  &:hover .dropdown__content {
+    display: block;
+  }
+
   &__trigger {
     cursor: pointer;
   }
@@ -61,10 +65,6 @@
     display: none;
   }
 
-  &__trigger:hover .dropdown__content {
-    display: block;
-  }
-
   &__link,
   button.dropdown__link {
     display: block;
@@ -78,7 +78,8 @@
     text-align: left;
     position: relative;
 
-    &:hover {
+    &:hover,
+    &:focus {
       background-color: $base-grey;
       color: $text-color;
       text-decoration: none;

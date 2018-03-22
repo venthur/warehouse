@@ -147,16 +147,16 @@ docReady(() => {
   }
 });
 
-// Bind click handlers to dropdowns for keyboard users
-docReady(() => {
-  let dropdownTriggers = document.querySelectorAll(".dropdown__trigger");
-  for (let trigger of dropdownTriggers) {
-    let button = trigger.querySelector("button");
-    let content = trigger.querySelector(".dropdown__content");
+var bindDropdowns = function () {
+  // Bind click handlers to dropdowns for keyboard users
+  let dropdowns = document.querySelectorAll(".dropdown");
+  for (let dropdown of dropdowns) {
+    let trigger = dropdown.querySelector(".dropdown__trigger");
+    let content = dropdown.querySelector(".dropdown__content");
 
-    // If the user has clicked the button (either with a mouse or by pressing
+    // If the user has clicked the trigger (either with a mouse or by pressing
     // space/enter on the keyboard) show the content
-    button.addEventListener("click", function () {
+    trigger.addEventListener("click", function () {
       // Toggle the visibility of the content
       if (content.classList.contains("display-block")) {
         content.classList.remove("display-block");
@@ -165,14 +165,21 @@ docReady(() => {
       }
     });
 
-    // If the user has moused onto the button and has happened to click it,
+    // If the user has moused onto the trigger and has happened to click it,
     // remove the `display-block` class so that it doesn't stay visable when
     // they mouse out
-    button.addEventListener("mouseout", function() {
+    trigger.addEventListener("mouseout", function() {
       content.classList.remove("display-block");
     });
   }
-});
+};
+
+// Bind the dropdowns when the page is ready
+docReady(bindDropdowns);
+
+// Bind again when client-side includes have been loaded (for the logged-in
+// user dropdown)
+document.addEventListener("CSILoaded", bindDropdowns);
 
 const application = Application.start();
 const context = require.context("./controllers", true, /\.js$/);

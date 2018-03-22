@@ -57,41 +57,43 @@
         <td class="table__upload">{{ file.upload_time|format_date() }}</td>
         <td class="table__options">
           <nav class="dropdown dropdown--with-icons pull-right">
-            <ul>
-              <li class="dropdown__trigger">
-                <button class="button button--primary" aria-haspopup="true" aria-expanded="false">
-                  Options
-                  <span class="dropdown__trigger-caret">
-                    <i class="fa fa-caret-down" aria-hidden="true"></i>
-                    <span class="sr-only">view submenu</span>
-                  </span>
-                </button>
-                <ul class="dropdown__content">
-                  <li>
-                    <a href="{{ request.route_url('packaging.file', path=file.path) }}" class="dropdown__link">
-                      <i class="fa fa-download" aria-hidden="true"></i>
-                      Download
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#copy-hash-modal-{{ loop.index }}" class="dropdown__link">
-                      <i class="fa fa-hashtag" aria-hidden="true"></i>
-                      View Hashes
-                    </a>
-                  </li>
+            <button class="button button--primary dropdown__trigger" aria-haspopup="true" aria-expanded="false">
+              Options
+              <span class="dropdown__trigger-caret">
+                <i class="fa fa-caret-down" aria-hidden="true"></i>
+                <span class="sr-only">view submenu</span>
+              </span>
+            </button>
+            <ul class="dropdown__content">
+              <li>
+                <a href="{{ request.route_url('packaging.file', path=file.path) }}" tabindex="-1">
+                  <button class="dropdown__link">
+                    <i class="fa fa-download" aria-hidden="true"></i>
+                    Download
+                  </button>
+                </a>
+              </li>
+              <li>
+                <a href="#copy-hash-modal-{{ loop.index }}" tabindex="-1">
+                  <button class="dropdown__link">
+                    <i class="fa fa-hashtag" aria-hidden="true"></i>
+                    View Hashes
+                  </button>
+                </a>
+              </li>
 
-                  <li>
-                    {% set title = "Delete File" %}
-                    {% set slug = title.lower().replace(' ', '-') + '-modal-{}'.format(loop.index) %}
-                    <a href="#{{ slug }}" class="dropdown__link">
-                      <i class="fa fa-trash" aria-hidden="true"></i>
-                      Delete
-                    </a>
-                    {% set extra_fields %}
-                    <input name="file_id" type="hidden" value="{{ file.id }}">
-                    {% endset %}
-                  </li>
-                </ul>
+              <li>
+                {% set title = "Delete File" %}
+                {% set slug = title.lower().replace(' ', '-') + '-modal-{}'.format(loop.index) %}
+                <a href="#{{ slug }}" tabindex="-1">
+                  <button class="dropdown__link">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                    Delete
+                  </button>
+                </a>
+                {% set extra_fields %}
+                <input name="file_id" type="hidden" value="{{ file.id }}">
+                {% endset %}
               </li>
             </ul>
           </nav>
