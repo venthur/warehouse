@@ -395,7 +395,7 @@ sub vcl_error {
         set obj.status = 403;
         set obj.response = "TLSv1.2+ is required";
         set obj.http.Content-Type = "text/plain; charset=UTF-8";
-        synthetic "Support for " tls.client.protocol " has been removed, please upgrade to a TLSv1.2+ client.";
+        synthetic "Support for " tls.client.protocol " has been removed, please upgrade to a TLSv1.2+ client. https://pyfound.blogspot.com/2017/01/time-to-upgrade-your-python-tls-v12.html";
         return (deliver);
     } else if (obj.status == 750) {
         set obj.status = 301;
