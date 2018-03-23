@@ -66,30 +66,24 @@
             </button>
             <ul class="dropdown__content">
               <li>
-                <a href="{{ request.route_url('packaging.file', path=file.path) }}" tabindex="-1">
-                  <button class="dropdown__link">
-                    <i class="fa fa-download" aria-hidden="true"></i>
-                    Download
-                  </button>
+                <a href="{{ request.route_url('packaging.file', path=file.path) }}" class="dropdown__link">
+                  <i class="fa fa-download" aria-hidden="true"></i>
+                  Download
                 </a>
               </li>
               <li>
-                <a href="#copy-hash-modal-{{ loop.index }}" tabindex="-1">
-                  <button class="dropdown__link">
-                    <i class="fa fa-hashtag" aria-hidden="true"></i>
-                    View Hashes
-                  </button>
+                <a href="#copy-hash-modal-{{ loop.index }}" class="dropdown__link">
+                  <i class="fa fa-hashtag" aria-hidden="true"></i>
+                  View Hashes
                 </a>
               </li>
 
               <li>
                 {% set title = "Delete File" %}
                 {% set slug = title.lower().replace(' ', '-') + '-modal-{}'.format(loop.index) %}
-                <a href="#{{ slug }}" tabindex="-1">
-                  <button class="dropdown__link">
-                    <i class="fa fa-trash" aria-hidden="true"></i>
-                    Delete
-                  </button>
+                <a href="#{{ slug }}" class="dropdown__link">
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                  Delete
                 </a>
                 {% set extra_fields %}
                 <input name="file_id" type="hidden" value="{{ file.id }}">

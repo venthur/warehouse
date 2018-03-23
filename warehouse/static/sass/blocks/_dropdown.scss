@@ -78,11 +78,14 @@
     text-align: left;
     position: relative;
 
-    &:hover,
-    &:focus {
+    &:hover {
       background-color: $base-grey;
       color: $text-color;
       text-decoration: none;
+    }
+
+    &:focus {
+      @include link-focus;
     }
 
     .fa {
